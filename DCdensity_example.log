@@ -1,0 +1,110 @@
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       log:  /accounts/fac/jmccrary/DCdensity_example.log
+  log type:  text
+ opened on:   9 Sep 2008, 20:02:25
+
+. 
+. clear
+
+. set mem 2G
+
+Current memory allocation
+
+                    current                                 memory usage
+    settable          value     description                 (1M = 1024k)
+    --------------------------------------------------------------------
+    set maxvar         5000     max. variables allowed           1.947M
+    set memory         2048M    max. data space              2,048.000M
+    set matsize         400     max. RHS vars in models          1.254M
+                                                            -----------
+                                                             2,051.201M
+
+. set more off
+
+. set seed 1234567
+
+. 
+. set obs 10000
+obs was 0, now 10000
+
+. gen Z=invnorm(uniform())
+
+. DCdensity Z, breakpoint(0) generate(Xj Yj r0 fhat se_fhat) graphname(DCdensity_example.eps)
+Using default bin size calculation, bin size = .019893953
+Using default bandwidth calculation, bandwidth = .665052958
+
+Discontinuity estimate (log difference in height): -.026830568
+                                                   (.061362301)
+Performing LLR smoothing.
+390 iterations will be performed 
+.......................................
+Exporting graph as DCdensity_example.eps
+(file DCdensity_example.eps written in EPS format)
+
+. 
+. capture program drop dog
+
+. program define dog, rclass
+  1. {
+  2.   syntax [, n(real 500)]
+  3.   drop _all
+  4.   set obs `n'
+  5.   gen Z=invnorm(uniform())
+  6.   //gen r0=0 in 1
+.   //DCdensity Z, breakpoint(0) generate(Xj Yj r0 fhat se_fhat) nograph
+.   DCdensity Z, breakpoint(0) generate(Xj Yj r0 fhat se_fhat) nograph
+  7.   local h=r(bandwidth)/2
+  8.   drop Xj Yj r0 fhat se_fhat
+  9.   DCdensity Z, breakpoint(0) h(`h') generate(Xj Yj r0 fhat se_fhat) nograph
+ 10.   return scalar bandwidth=r(bandwidth)
+ 11.   return scalar theta=r(theta)
+ 12.   return scalar se_theta=r(se)
+ 13.   ereturn clear
+ 14. }
+ 15. end
+
+. 
+. simulate, reps(1000): dog
+
+      command:  dog
+     se_theta:  r(se_theta)
+        theta:  r(theta)
+    bandwidth:  r(bandwidth)
+
+Simulations (1000)
+----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
+..................................................    50
+..................................................   100
+..................................................   150
+..................................................   200
+..................................................   250
+..................................................   300
+..................................................   350
+..................................................   400
+..................................................   450
+..................................................   500
+..................................................   550
+..................................................   600
+..................................................   650
+..................................................   700
+..................................................   750
+..................................................   800
+..................................................   850
+..................................................   900
+..................................................   950
+..................................................  1000
+
+. 
+. gen t=theta/se_theta
+
+. //2 views regarding the issue of normal approximation
+. kdensity t, normal
+
+. qnorm t
+
+. 
+. log close
+       log:  /accounts/fac/jmccrary/DCdensity_example.log
+  log type:  text
+ closed on:   9 Sep 2008, 20:03:33
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

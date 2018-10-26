@@ -1,0 +1,10 @@
+v 0.1
+d STATA Package: DCdensity
+d 
+d Authors: Justin McCrary, Professor of Law, University of California, Berkeley ,https://eml.berkeley.edu/~jmccrary/
+d
+d Date: 11.17.2009
+d 
+f DCdensity.ado
+f DCdensity_example.do
+
