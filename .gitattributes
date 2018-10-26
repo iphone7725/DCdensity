@@ -1,0 +1,15 @@
+
+*.dta linguist-language=stata
+*.gph linguist-language=stata
+*.log linguist-language=stata
+*.smcl linguist-language=stata
+*.stpr linguist-language=stata
+*.stsem linguist-language=stata
+
+# *.ps linguist-language=stata
+# *.eps linguist-language=stata
+# *.wmf  linguist-language=stata
+# *.emf linguist-language=stata
+# *.pdf linguist-language=stata
+# *.png linguist-language=stata
+# *.tif  linguist-language=stata
