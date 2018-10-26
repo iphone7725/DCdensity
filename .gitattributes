@@ -1,4 +1,5 @@
-
+*.do linguist-language=stata
+*.ado linguist-language=stata
 *.dta linguist-language=stata
 *.gph linguist-language=stata
 *.log linguist-language=stata
