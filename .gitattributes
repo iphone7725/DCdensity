@@ -1,0 +1,16 @@
+*.do linguist-language=Stata
+*.ado linguist-language=Stata
+*.dta linguist-language=Stata
+*.gph linguist-language=Stata
+*.log linguist-language=Stata
+*.smcl linguist-language=Stata
+*.stpr linguist-language=Stata
+*.stsem linguist-language=Stata
+
+*.ps linguist-language=Stata
+*.eps linguist-language=Stata
+*.wmf  linguist-language=Stata
+*.emf linguist-language=Stata
+*.pdf linguist-language=Stata
+*.png linguist-language=Stata
+*.tif  linguist-language=Stata
