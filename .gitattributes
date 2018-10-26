@@ -6,7 +6,6 @@
 *.smcl linguist-language=Stata
 *.stpr linguist-language=Stata
 *.stsem linguist-language=Stata
-
 *.ps linguist-language=Stata
 *.eps linguist-language=Stata
 *.wmf  linguist-language=Stata
