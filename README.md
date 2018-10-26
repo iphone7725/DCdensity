@@ -1,6 +1,8 @@
 # DCdensity
 来自：**https://eml.berkeley.edu/~jmccrary/DCdensity/**
 
+Type **`github install iphone7725/DCdensity`** to download the ado file. It will be saved as **D:\stata15\ado\plus\d\dcdensity.ado**. 
+
 This subdirectory contains 5 files:
 
 1. **DCdensity.ado**  
